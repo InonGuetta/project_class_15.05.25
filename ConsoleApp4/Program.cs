@@ -71,17 +71,16 @@ namespace ConsoleApp4
                     Console.WriteLine(numbers[i] + " ");
                 }
             }
-            ;
+            
 
-            // 04 
-            void sorted_array(List<int> numbers)
+            List<int> sorted_array(List<int> numbers)
             {
 
                 List<int> numbers_sort = new List<int>();
 
-                for (int i = 0; i < numbers.Count; i++)
+                for (int i = 0; i < numbers.Count-1; i++)
                 {
-                    for (int j = 0; j < numbers.Count; j++)
+                    for (int j = 0; j < numbers.Count-1; j++)
                     {
                         if (numbers[j] > numbers[j + 1])
                         {
@@ -93,56 +92,53 @@ namespace ConsoleApp4
                 }
                 for (int i = 0;i<numbers.Count ;i++)
                 {
-                    numbers_sort[i] = numbers[i];
+                    numbers_sort.Add(numbers[i]);
                 }
+                return numbers_sort;
+            }
+
+            // 04 
+            void show_sorted_list(List<int> numbers)
+            {
+                List<int> numbers_sort = sorted_array(numbers);
                 foreach (var item in numbers_sort)
                 {
-                    Console.WriteLine(item + " ");
+                    Console.WriteLine(item);
                 }
-                //return numbers_sort;
             }
-  
-            //void show_sorted_list(List<int> numbers)
-            //{
-            //    List<int> numbers_sort = sorted_array(numbers);
-            //    foreach (var item in numbers_sort)
-            //    {
-            //        Console.WriteLine(item);
-            //    }
-            //}
 
             // 05
-            //void show_max_num(List<int> numbers)
-            //{
-            //    List<int> numberssort = sorted_array(numbers);
-            //    Console.WriteLine(numbers[numbers.Count-1]);
+            void show_max_num(List<int> numbers)
+            {
+                List<int> numberssort = sorted_array(numbers);
+                Console.WriteLine(numbers[numbers.Count - 1]);
 
-            //}
-            
+            }
+
 
             // 06
-            //void show_min_num(List<int> numbers)
-            //{
-            //    List<int> numberssort = sorted_array(numbers);
-            //    Console.WriteLine(numberssort[0]);
+            void show_min_num(List<int> numbers)
+            {
+                List<int> numberssort = sorted_array(numbers);
+                Console.WriteLine(numberssort[0]);
 
-            //}
-            
+            }
+
 
             // 07
-            //int avarge()
-            //{
-            //    // כשל שיוצר לולאה אין סופית
-            //    //List<int> numbers = create_val_int();
-            //    int avaragee;
-            //    int sum = summ();
-            //    int number_of_elemts = number_of_elemt();
+            void avarge(List<int> numbers)
+            {
+                // כשל שיוצר לולאה אין סופית
+                //List<int> numbers = create_val_int();
+                double avaragee;
+                int sum = summ(numbers);
+                int number_of_elemts = numbers.Count;
 
-            //    avaragee = sum / number_of_elemts;
+                avaragee = (double)sum / number_of_elemts;
 
-            //    return avaragee;
+                Console.WriteLine(avaragee);
 
-            //}
+            }
             //;
 
             // 08
@@ -154,18 +150,24 @@ namespace ConsoleApp4
             }
             ;
 
-            // 09
             int summ(List<int> numbers)
             {
-
                 int sum = 0;
                 foreach (var item in numbers)
                 {
                     sum += item;
                 }
+
                 return sum; 
             }
-            ;
+
+            // 09
+            void summ_print(List<int> numbers)
+            {
+                int sum = summ(numbers);
+                Console.WriteLine(sum);
+            }
+
 
 
 
@@ -185,13 +187,15 @@ namespace ConsoleApp4
                     "show min TO show min value. \n" +
                     "avarge TO show avarge of array. \n" +
                     "count element TO show the count of element. \n" +
-                    "sum TO sum of array. stop TO stop program");
+                    "sum TO sum of array. stop TO stop program \n");
 
                 string choice = Console.ReadLine();
                 switch (choice)
                 {
                     case "insert array":
                         create_val_int();
+
+
                         break;
                     case "show array":
                         show_array(numbers);
@@ -200,22 +204,22 @@ namespace ConsoleApp4
                         show_reverse_array(numbers);
                         break;
                     case "sort array":
-                        sorted_array(numbers);
+                        show_sorted_list(numbers);
                         break;
-                    //case "show max":
-                    //    show_max_num(numbers);
-                    //    break;
-                    //case "show min":
-                    //    show_min_num(numbers);
-                    //    break;
-                    //case "avarge":
-                    //    avarge();
-                    //    break;
+                    case "show max":
+                        show_max_num(numbers);
+                        break;
+                    case "show min":
+                        show_min_num(numbers);
+                        break;
+                    case "avarge":
+                        avarge(numbers);
+                        break;
                     case "count element":
                         number_of_elemt(numbers);
                         break;
                     case "sum":
-                        summ(numbers);
+                        summ_print(numbers);
                         break;
 
                     case "stop":

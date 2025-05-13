@@ -33,10 +33,6 @@ namespace ConsoleApp4
                 return check;
             }
 
-            // 
-            // there is a problem here that is missing real validate 
-
-
             // 01
             List<int> create_val_int()
             {
@@ -55,10 +51,9 @@ namespace ConsoleApp4
 
 
             // 02
-
-            void show_array()
+            void show_array(List<int> numbers)
             {
-                List<int> numbers = create_val_int();
+
                 foreach (var item in numbers)
                 {
                     Console.WriteLine(item + " ");
@@ -68,10 +63,10 @@ namespace ConsoleApp4
             ;
 
             // 03 
-            void show_reverse_array()
+            void show_reverse_array(List<int> numbers)
             {
-                List<int> numbers = create_val_int();
-                for (int i = numbers.Count-1; i>0;i--)
+
+                for (int i = numbers.Count-1; i >= 0;i--)
                 {
                     Console.WriteLine(numbers[i] + " ");
                 }
@@ -79,75 +74,90 @@ namespace ConsoleApp4
             ;
 
             // 04 
-            List<int> sorted_array()
+            void sorted_array(List<int> numbers)
             {
+
                 List<int> numbers_sort = new List<int>();
-                List<int> numbers = create_val_int();
-                for(int i = 0; i < numbers.Count; i++)
+
+                for (int i = 0; i < numbers.Count; i++)
                 {
-                    for (int j = 0; i <numbers.Count ;j++)
+                    for (int j = 0; j < numbers.Count; j++)
                     {
-                        if (numbers[j] > numbers[j+1])
+                        if (numbers[j] > numbers[j + 1])
                         {
                             int temp = numbers[j];
-                            numbers[j] = numbers[j+1];
-                            numbers[j+1] = temp;
+                            numbers[j] = numbers[j + 1];
+                            numbers[j + 1] = temp;
                         }
                     }
                 }
-
-                return numbers_sort;
-
-
+                for (int i = 0;i<numbers.Count ;i++)
+                {
+                    numbers_sort[i] = numbers[i];
+                }
+                foreach (var item in numbers_sort)
+                {
+                    Console.WriteLine(item + " ");
+                }
+                //return numbers_sort;
             }
-            ;
+  
+            //void show_sorted_list(List<int> numbers)
+            //{
+            //    List<int> numbers_sort = sorted_array(numbers);
+            //    foreach (var item in numbers_sort)
+            //    {
+            //        Console.WriteLine(item);
+            //    }
+            //}
 
             // 05
-            void show_max_num()
-            {
-                List<int> numbers = sorted_array();
-                Console.WriteLine(numbers[numbers.Count-1]);
+            //void show_max_num(List<int> numbers)
+            //{
+            //    List<int> numberssort = sorted_array(numbers);
+            //    Console.WriteLine(numbers[numbers.Count-1]);
 
-            }
-            ;
+            //}
+            
 
             // 06
-            void show_min_num()
-            {
-                List<int> numbers = sorted_array();
-                Console.WriteLine(numbers[0]);
+            //void show_min_num(List<int> numbers)
+            //{
+            //    List<int> numberssort = sorted_array(numbers);
+            //    Console.WriteLine(numberssort[0]);
 
-            }
-            ;
+            //}
+            
 
             // 07
-            int avarge()
-            {
-                List<int> numbers = create_val_int();
-                int avaragee;
-                int sum = summ();
-                int number_of_elemts = number_of_elemt();
+            //int avarge()
+            //{
+            //    // כשל שיוצר לולאה אין סופית
+            //    //List<int> numbers = create_val_int();
+            //    int avaragee;
+            //    int sum = summ();
+            //    int number_of_elemts = number_of_elemt();
 
-                avaragee = sum / number_of_elemts;
+            //    avaragee = sum / number_of_elemts;
 
-                return avaragee;
+            //    return avaragee;
 
-            }
-            ;
+            //}
+            //;
 
             // 08
-            int number_of_elemt()
+            void number_of_elemt(List<int> numbers)
             {
-                List<int> numbers = create_val_int();
+
                 int number_elements = numbers.Count;
-                return number_elements;
+                Console.WriteLine(number_elements);
             }
             ;
 
             // 09
-            int summ()
+            int summ(List<int> numbers)
             {
-                List<int> numbers = create_val_int();
+
                 int sum = 0;
                 foreach (var item in numbers)
                 {
@@ -159,17 +169,24 @@ namespace ConsoleApp4
 
 
 
-            void runMenu(){ 
-            }
+            void runMenu()
+            {
+                List<int> numbers = create_val_int();
 
-            Console.WriteLine("please enter here you choice: ");
+                Console.WriteLine("please enter here you choice: ");
             bool stop = false;
             while (!stop)
             {
-                Console.WriteLine("insert array TO create array. show array TO show array. show revers TO show revers" +
-                    "sort array TO sort the array. show max TO show max value. show min TO show min value" +
-                    "avarge TO show avarge of array. count element TO show the count of element" +
+                Console.WriteLine("insert array TO create array.\n" +
+                    "show array TO show array. \n" +
+                    "show reverse TO show revers \n" +
+                    "sort array TO sort the array. \n" +
+                    "show max TO show max value. \n" +
+                    "show min TO show min value. \n" +
+                    "avarge TO show avarge of array. \n" +
+                    "count element TO show the count of element. \n" +
                     "sum TO sum of array. stop TO stop program");
+
                 string choice = Console.ReadLine();
                 switch (choice)
                 {
@@ -177,28 +194,28 @@ namespace ConsoleApp4
                         create_val_int();
                         break;
                     case "show array":
-                        show_array();
+                        show_array(numbers);
                         break;
                     case "show reverse":
-                        show_reverse_array();
+                        show_reverse_array(numbers);
                         break;
                     case "sort array":
-                        sorted_array();
+                        sorted_array(numbers);
                         break;
-                    case "show max":
-                        show_max_num();
-                        break;
-                    case "show min":
-                        show_min_num();
-                        break;
-                    case "avarge":
-                        show_array();
-                        break;
+                    //case "show max":
+                    //    show_max_num(numbers);
+                    //    break;
+                    //case "show min":
+                    //    show_min_num(numbers);
+                    //    break;
+                    //case "avarge":
+                    //    avarge();
+                    //    break;
                     case "count element":
-                        number_of_elemt();
+                        number_of_elemt(numbers);
                         break;
                     case "sum":
-                        summ();
+                        summ(numbers);
                         break;
 
                     case "stop":
@@ -206,6 +223,8 @@ namespace ConsoleApp4
                         break;
                 }
             }
+            }
+            runMenu();
         }
 
     }

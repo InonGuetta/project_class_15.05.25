@@ -173,7 +173,15 @@ namespace ConsoleApp4
 
             void runMenu()
             {
-                List<int> numbers = create_val_int();
+
+                List<int> numbers = new List<int>{ 1,2,-3};
+                while (!validate_array(numbers))
+                {
+                    numbers = create_val_int();
+                }
+
+
+
 
                 Console.WriteLine("please enter here you choice: ");
             bool stop = false;
